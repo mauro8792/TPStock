@@ -5,15 +5,20 @@ import lombok.Setter;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
 @Getter
 @Setter
 @Entity
-public class Proveedor{
-
+public class Articulo {
     @Id
     @GeneratedValue
     private Long id;
     private String nombre;
-    private Long lead_time;
+    private Integer Stock;
+    private Integer precio_stock;
+    private Integer precio_venta;
 
+
+
+    private Long fk_id_proveedor;
 }
