@@ -5,6 +5,8 @@ import com.TPStock.Onaine.Repositorio.ArticuloRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/articulo")
 public class ArticuloControladora {
@@ -29,6 +31,21 @@ public class ArticuloControladora {
         arti.setPrecio_venta(this.bd.findByNombre(nombre).getPrecio_venta());
         arti.setStock(this.bd.findByNombre(nombre).getStock());
         this.bd.delete(arti);
+    }
+    @GetMapping(value = "/{nombre}",produces = "application/json")
+    public Articulo getByName(@PathVariable("nombre") String nombre) {
 
+        Articulo arti = new Articulo();
+        arti.setId(this.bd.findByNombre(nombre).getId());
+        arti.setNombre(this.bd.findByNombre(nombre).getNombre());
+        arti.setPrecio_stock(this.bd.findByNombre(nombre).getPrecio_stock());
+        arti.setPrecio_venta(this.bd.findByNombre(nombre).getPrecio_venta());
+        arti.setStock(this.bd.findByNombre(nombre).getStock());
+        return arti;
+    }
+    @GetMapping(value = "/")
+    public List getAllArticulos() {
+        List<Articulo> articulos = this.bd.findAll();
+        return articulos;
     }
 }

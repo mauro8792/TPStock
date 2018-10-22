@@ -2,9 +2,8 @@ package com.TPStock.Onaine.Modelo;
 
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -17,8 +16,9 @@ public class Articulo {
     private Integer Stock;
     private Integer precio_stock;
     private Integer precio_venta;
-
-
-
-    private Long fk_id_proveedor;
+    @ManyToOne
+    @JoinColumn(
+            name = "fk_id_proveedor"
+    )
+    private Proveedor proveedor;
 }

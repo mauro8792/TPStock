@@ -3,7 +3,6 @@ package com.TPStock.Onaine.Controladora;
 import com.TPStock.Onaine.Modelo.Proveedor;
 import com.TPStock.Onaine.Repositorio.ProveedorRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +24,12 @@ public class ProveedorControladora {
 
     // los proveedores no se eliminan
 
-    @DeleteMapping(value = "/{Id}")
-    public void deleteProveedorNombre(@PathVariable("Id") Long Id) {
+    @DeleteMapping(value = "/{nombre}")
+    public void deleteProveedorNombre(@PathVariable("nombre") String nombre) {
         Proveedor prov = new Proveedor();
-        prov.setId(this.bd.findById(Id).get().getId());
-        prov.setNombre(this.bd.findById(Id).get().getNombre());
-        prov.setLead_time(this.bd.findById(Id).get().getLead_time());
+        prov.setId(this.bd.findByNombre(nombre).getId());
+        prov.setNombre(this.bd.findByNombre(nombre).getNombre());
+        prov.setLead_time(this.bd.findByNombre(nombre).getLead_time());
         this.bd.delete(prov);
 
     }
