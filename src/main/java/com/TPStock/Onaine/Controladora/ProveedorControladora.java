@@ -1,5 +1,6 @@
 package com.TPStock.Onaine.Controladora;
 
+import com.TPStock.Onaine.Modelo.Articulo;
 import com.TPStock.Onaine.Modelo.Proveedor;
 import com.TPStock.Onaine.Repositorio.ProveedorRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,13 @@ public class ProveedorControladora {
     @GetMapping(value = "/")
     public List getAllProvider() {
         List<Proveedor> proveedores = this.bd.findAll();
+        for(Proveedor p: proveedores){
+            for(Articulo a : p.getArti()){
+                a.setProveedor(null);
+            }
+        }
         return proveedores;
     }
+
 
 }

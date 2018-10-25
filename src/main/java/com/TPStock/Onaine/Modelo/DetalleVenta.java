@@ -2,8 +2,9 @@ package com.TPStock.Onaine.Modelo;
 
 import lombok.Getter;
 import lombok.Setter;
-
+import javax.persistence.Id;
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter
@@ -11,17 +12,22 @@ import javax.persistence.*;
 public class DetalleVenta {
     @Id
     @GeneratedValue
-    private  Long id;
+    private Long id;
     @ManyToOne
     @JoinColumn(
             name = "fk_id_articulo"
     )
     private Articulo articulo;
-    @ManyToOne
+    private Double cantidad;
+    private Double sub_Total;
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(
             name = "fk_id_venta"
     )
     private Venta venta;
-    private Long cantidad;
-    private Double sub_Total;
+
+    public void calcularSubTotal(){
+         this.sub_Total=(this.cantidad * this.articulo.getPrecio_venta());
+
+    }
 }

@@ -13,12 +13,12 @@ public class Articulo {
     @GeneratedValue
     private Long id;
     private String nombre;
-    private Integer Stock;
-    private Integer precio_stock;
+    private Double Stock;
+    private Double precio_stock;
     private Integer precio_venta;
-    @ManyToOne
+   @ManyToOne
     @JoinColumn(
-            name = "fk_id_proveedor"
+            name = "fk_id_proveedor", nullable = false
     )
-    private Proveedor proveedor;
+    private Proveedor proveedor=null;
 }

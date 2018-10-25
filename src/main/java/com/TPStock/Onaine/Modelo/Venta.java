@@ -3,10 +3,9 @@ package com.TPStock.Onaine.Modelo;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -15,6 +14,14 @@ public class Venta {
     @Id
     @GeneratedValue
     private Long id;
+
     private Date fecha;
-    private Long total;
+    private Double total;
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
+    private List<DetalleVenta> detalles=null;
+
+    public void agregarDetalle(DetalleVenta detalle){
+        this.detalles.add(detalle);
+    }
+
 }

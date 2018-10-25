@@ -7,7 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProveedorRepositorio extends JpaRepository<Proveedor, Long>{
    Proveedor findByNombre(String nombre);
-
-   // @Query("Select * from Proveedor")
-    //List<?> getAll();
 }
